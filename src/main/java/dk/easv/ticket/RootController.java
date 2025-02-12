@@ -28,7 +28,10 @@ public class RootController {
             addAdminButtons();
         else
             addOrganButtons();
-
+        /**ArrayList<Button> buttons = new ArrayList<>();
+        buttons.addAll(addAdminButtons());
+        buttons.addAll(addOrganButtons());
+        setMenuBar(buttons);*/
         setCenterMain();
     }
 
@@ -53,6 +56,7 @@ public class RootController {
         buttons.add(usersButton);
         buttons.add(eventsButton);
         setMenuBar(buttons);
+        //return buttons;
     }
 
     private void addOrganButtons() {
@@ -81,6 +85,7 @@ public class RootController {
         buttons.add(ticketButton);
         buttons.add(profileButton);
         setMenuBar(buttons);
+        //return buttons;
     }
 
     private void setMenuBar(ArrayList<Button> buttons) {

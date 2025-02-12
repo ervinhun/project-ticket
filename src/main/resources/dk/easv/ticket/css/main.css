@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Luckiest+Guy&display=swap');
 
+.root {
+    -fx-background-color: #FFF;
+}
+
+.left-pane {
+    -fx-border-color: transparent #000000 transparent transparent; /* Only right border */
+    -fx-border-width: 0 2px 0 0;
+    -fx-padding: 10;
+}
+
 .other_header {
     -fx-font-size: 28px;
     -fx-font-weight: bold;
