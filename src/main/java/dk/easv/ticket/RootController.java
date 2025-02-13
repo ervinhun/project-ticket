@@ -39,6 +39,7 @@ public class RootController {
         buttons.addAll(addOrganButtons());
         setMenuBar(buttons);*/
         setCenterMain();
+        setBottomPart();
     }
 
 
@@ -166,14 +167,14 @@ public class RootController {
 
         });
 
-        Button editButton = new Button("Edit event");
+        Button editButton = new Button("Edit");
         HBox.setMargin(editButton, new Insets(12, 10, 0, 0));
         editButton.setDisable(true);
         editButton.setOnAction(e -> {
 
         });
 
-        Button deleteButton = new Button("Delete event");
+        Button deleteButton = new Button("Delete");
         HBox.setMargin(deleteButton, new Insets(12, 10, 0, 0));
         deleteButton.setDisable(true);
         deleteButton.setOnAction(e -> {
@@ -191,5 +192,14 @@ public class RootController {
         });
 
         root.setCenter(eventPage);
+    }
+
+    private void setBottomPart() {
+        HBox bottomBar = new HBox();
+        bottomBar.setPrefHeight(15); // Set height
+        bottomBar.getStyleClass().add("bottomBar");
+
+        root.setBottom(bottomBar); // Add it to the BorderPane
+
     }
 }

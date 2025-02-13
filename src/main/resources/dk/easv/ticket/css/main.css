@@ -10,6 +10,13 @@
     -fx-padding: 10;
 }
 
+.bottom-pane {
+    -fx-background-color: #d00000;
+}
+.bottomBar {
+    -fx-background-color: #d00000;
+}
+
 .other_header {
     -fx-font-size: 28px;
     -fx-font-weight: bold;
