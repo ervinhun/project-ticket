@@ -1,5 +1,6 @@
 package dk.easv.ticket;
 
+import dk.easv.ticket.be.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -7,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -22,6 +24,7 @@ public class RootController {
     private String username;
     private final static String IMG_PATH = "src/main/resources/dk/easv/ticket/img/";
     private ArrayList<String> roles;
+    //private TableView<Event> eventTable;
 
     public void setUsername(String username) {
         this.username = username;
@@ -146,12 +149,14 @@ public class RootController {
         VBox eventPage = loader.load();
         eventPage.setAlignment(Pos.TOP_CENTER);
 
+
         //Adding the buttons
         HBox assignHbox = new HBox();
         assignHbox.setAlignment(Pos.BOTTOM_LEFT);
 
         Button assignButton = new Button("Assign to user");
         HBox.setMargin(assignButton, new Insets(12, 175, 0, 0));
+        assignButton.setDisable(true);
         assignButton.setOnAction(e -> {
 
         });
@@ -163,17 +168,28 @@ public class RootController {
 
         Button editButton = new Button("Edit event");
         HBox.setMargin(editButton, new Insets(12, 10, 0, 0));
+        editButton.setDisable(true);
         editButton.setOnAction(e -> {
 
         });
 
         Button deleteButton = new Button("Delete event");
         HBox.setMargin(deleteButton, new Insets(12, 10, 0, 0));
+        deleteButton.setDisable(true);
         deleteButton.setOnAction(e -> {
 
         });
         assignHbox.getChildren().addAll(assignButton, newEventButton, editButton, deleteButton);
         eventPage.getChildren().add(assignHbox);
+        EventController eventController = loader.getController();
+        TableView tableView = eventController.getTableView();
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            boolean selected = newSelection != null; // Check if something is selected
+            assignButton.setDisable(!selected);
+            deleteButton.setDisable(!selected);
+            editButton.setDisable(!selected);
+        });
+
         root.setCenter(eventPage);
     }
 }

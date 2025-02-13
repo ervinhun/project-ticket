@@ -100,4 +100,8 @@ public class EventController implements Initializable {
         list.add(new Event("Enable integrated methodologies", "2024-10-22", "Mallory", 13, null));
         return list;
     }
+
+    public TableView getTableView() {
+        return tableView;
+    }
 }
