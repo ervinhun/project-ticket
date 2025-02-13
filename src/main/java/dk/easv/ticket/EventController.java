@@ -72,7 +72,7 @@ public class EventController implements Initializable {
         });
         titleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
         startDateColumn.setCellValueFactory(cellData -> cellData.getValue().startDateProperty());
-        activeColumn.setCellValueFactory(cellData -> cellData.getValue().activeProperty());
+        //activeColumn.setCellValueFactory(cellData -> cellData.getValue().activeProperty());
         typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeOfEventProperty().asObject());
         locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
 

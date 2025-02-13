@@ -41,13 +41,13 @@ public class Event {
         int active = r.nextInt(4);
         switch (active) {
             case 0:
-                this.active = new SimpleStringProperty("false");
+                this.active = new SimpleStringProperty("No");
                 break;
             case 1:
-                this.active = new SimpleStringProperty("pending");
+                this.active = new SimpleStringProperty("Pending");
                 break;
             default:
-                this.active = new SimpleStringProperty("true");
+                this.active = new SimpleStringProperty("Yes");
 
         }
         //this.active = new SimpleStringProperty("true");

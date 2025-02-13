@@ -1,8 +1,10 @@
 package dk.easv.ticket;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RootController {
@@ -18,11 +21,11 @@ public class RootController {
     @FXML private Label welcomeLabel;
     private String username;
     private final static String IMG_PATH = "src/main/resources/dk/easv/ticket/img/";
+    private ArrayList<String> roles;
 
     public void setUsername(String username) {
         this.username = username;
-        //usernameLabel.setText("Welcome, " + username);
-        System.out.println("Username: " + username);
+        roles = new ArrayList<>();
         welcomeLabel.setText(welcomeLabel.getText() + " " + username);
         if (username.equals("admin"))
             addAdminButtons();
@@ -51,6 +54,11 @@ public class RootController {
 
         eventsButton.setOnAction(e -> {
             System.out.println("Events");
+            try {
+                loadEventsPage();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         ArrayList<Button> buttons = new ArrayList<>();
         buttons.add(usersButton);
@@ -66,6 +74,11 @@ public class RootController {
         eventsButton.setOnAction(e -> {
             //getUsersPage();
             System.out.println("Events");
+            try {
+                loadEventsPage();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         Button ticketButton = new Button("Tickets");
@@ -95,7 +108,7 @@ public class RootController {
         System.out.println(menuLabel.getStyleClass());
 
         Button logoutButton = new Button("Logout");
-        VBox.setMargin(logoutButton, new Insets(0, 0, 15, 10));
+        VBox.setMargin(logoutButton, new Insets(0, 10, 15, 10));
         logoutButton.setOnAction(e -> {
             System.out.println("Logout");
         });
@@ -110,6 +123,7 @@ public class RootController {
         buttonBox.getChildren().addAll(spacer, logoutButton);
         buttonBox.setAlignment(Pos.TOP_CENTER);
         VBox.setVgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
+        //VBox.setMargin(event, new Insets(0, 10, 0, 0));
         root.setLeft(buttonBox);
     }
 
@@ -124,5 +138,42 @@ public class RootController {
         image.setPreserveRatio(true);
         centerMain.getChildren().add(image);
         root.setCenter(centerMain);
+    }
+
+    public void loadEventsPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(RootController.class.getResource("event.fxml"));
+        VBox eventPage = loader.load();
+        eventPage.setAlignment(Pos.TOP_CENTER);
+
+        //Adding the buttons
+        HBox assignHbox = new HBox();
+        assignHbox.setAlignment(Pos.BOTTOM_LEFT);
+
+        Button assignButton = new Button("Assign to user");
+        HBox.setMargin(assignButton, new Insets(12, 175, 0, 0));
+        assignButton.setOnAction(e -> {
+
+        });
+        Button newEventButton = new Button("New event");
+        HBox.setMargin(newEventButton, new Insets(12, 10, 0, 0));
+        newEventButton.setOnAction(e -> {
+
+        });
+
+        Button editButton = new Button("Edit event");
+        HBox.setMargin(editButton, new Insets(12, 10, 0, 0));
+        editButton.setOnAction(e -> {
+
+        });
+
+        Button deleteButton = new Button("Delete event");
+        HBox.setMargin(deleteButton, new Insets(12, 10, 0, 0));
+        deleteButton.setOnAction(e -> {
+
+        });
+        assignHbox.getChildren().addAll(assignButton, newEventButton, editButton, deleteButton);
+        eventPage.getChildren().add(assignHbox);
+        root.setCenter(eventPage);
     }
 }
