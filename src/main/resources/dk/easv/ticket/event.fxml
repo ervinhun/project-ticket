@@ -9,7 +9,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.EventController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/events.css">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/events.css, @css/all.css">
           <children>
               <TableView fx:id="tableView" prefHeight="485" prefWidth="687">
                   <columns>

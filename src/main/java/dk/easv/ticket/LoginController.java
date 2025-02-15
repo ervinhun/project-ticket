@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 public class LoginController {
 
+    @FXML private TextField usernameInput;
     @FXML private Label welcomeText;
 
     public void loginClicked(ActionEvent event) {
@@ -23,8 +25,8 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("root.fxml"));
             Parent root = loader.load();
             RootController rootController = loader.getController();
-            //rootController.setUsername("admin");
-            rootController.setUsername("Ervin");
+            String username = usernameInput.getText();
+            rootController.setUsername(username);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

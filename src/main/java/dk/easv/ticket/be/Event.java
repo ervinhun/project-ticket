@@ -29,7 +29,7 @@ public class Event {
     private String notes;
     private final ObservableValue<String> active;
 
-    private final static String IMG_PATH = "src/main/resources/dk/easv/ticket/img";
+    private final static String IMG_PATH = "src/main/resources/dk/easv/ticket/img/";
 
 
     public Event(String title, String startDate, String location, int typeOfEvent, String img) {

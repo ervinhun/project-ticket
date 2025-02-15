@@ -15,12 +15,12 @@
           <Label fx:id="welcomeText" layoutX="68.0" layoutY="46.0" styleClass="login_header" text="Welcome to the Event Organizing page" />
       <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="161.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
          <children>
-            <TextField maxWidth="200.0" prefWidth="200.0" promptText="username" />
+            <TextField fx:id="usernameInput" maxWidth="200.0" prefWidth="200.0" promptText="username" />
             <PasswordField maxWidth="200.0" prefWidth="200.0" promptText="password" />
             <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Forgot password" onMouseClicked="#forgotPass" />
-                  <Button mnemonicParsing="false" text="Login" onAction="#loginClicked" />
+                  <Button mnemonicParsing="false" text="Login" onAction="#loginClicked" defaultButton="true" />
                </children>
                <padding>
                   <Insets right="30.0" />

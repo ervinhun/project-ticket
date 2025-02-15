@@ -19,22 +19,13 @@ import dk.easv.ticket.be.Event;
 
 public class EventController implements Initializable {
 
-    @FXML
-    private TableView tableView;
-    @FXML
-    private TableColumn<Event, String> imageColumn;
-    @FXML
-    private TableColumn<Event, String> titleColumn;
-    @FXML
-    private TableColumn<Event, String> startDateColumn;
-    @FXML
-    private TableColumn<Event, String> activeColumn;
-    @FXML
-    private TableColumn<Event, Integer> typeColumn;
-    @FXML
-    private TableColumn<Event, String> locationColumn;
-
-
+    @FXML private TableView tableView;
+    @FXML private TableColumn<Event, String> imageColumn;
+    @FXML private TableColumn<Event, String> titleColumn;
+    @FXML private TableColumn<Event, String> startDateColumn;
+    @FXML private TableColumn<Event, String> activeColumn;
+    @FXML private TableColumn<Event, Integer> typeColumn;
+    @FXML private TableColumn<Event, String> locationColumn;
     private ObservableList<Event> event;
     private final static String DEFAULT_IMAGES_SRC = "src/main/resources/dk/easv/ticket/img/no_img.jpg";
 
@@ -103,5 +94,25 @@ public class EventController implements Initializable {
 
     public TableView getTableView() {
         return tableView;
+    }
+
+    public ObservableList<Event> getEvent() {
+        return event;
+    }
+
+    public void setEvent(ObservableList<Event> event) {
+        this.event = event;
+    }
+
+    public boolean deleteEvent (Event event) {
+        if (!this.event.isEmpty()) {
+            try {
+                this.event.remove(event);
+                return true;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return false;
     }
 }
