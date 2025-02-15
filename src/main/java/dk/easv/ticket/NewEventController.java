@@ -106,21 +106,13 @@ public class NewEventController implements Initializable {
             cb.setText(ticketType.getName());
             cb.setId("cb_" + ticketType.getId());
             System.out.println(cb.getId());
-            //FlowPane.setMargin(cb, new Insets(0, 10, 5, 0));
-            //GridPane.setVgrow(flowTicketTypes, Priority.ALWAYS);
-            //GridPane.setVgrow(flowSpecialTickets, Priority.ALWAYS);
 
-            //ticketRow.setVgrow(Priority.ALWAYS);
-            //ticketRow2.setVgrow(Priority.ALWAYS);
             if (ticketType.getSpecial()) {
                 flowSpecialTickets.getChildren().add(cb);
-            }
-            else {
+            } else {
                 flowTicketTypes.getChildren().add(cb);
             }
-
         }
-
     }
 
     private void setTicketTypesHeight() {
