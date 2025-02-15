@@ -104,6 +104,8 @@ public class NewEventController implements Initializable {
         for (TicketType ticketType : ticketTypes) {
             CheckBox cb = new CheckBox();
             cb.setText(ticketType.getName());
+            cb.setId("cb_" + ticketType.getId());
+            System.out.println(cb.getId());
             //FlowPane.setMargin(cb, new Insets(0, 10, 5, 0));
             //GridPane.setVgrow(flowTicketTypes, Priority.ALWAYS);
             //GridPane.setVgrow(flowSpecialTickets, Priority.ALWAYS);
@@ -126,7 +128,6 @@ public class NewEventController implements Initializable {
         RowConstraints ticketRow2 = gridPaneForm.getRowConstraints().get(8);
         double flowTicketHeight = flowTicketTypes.getHeight();
         double flowSpecialTicketHeight = flowSpecialTickets.getHeight();
-        System.out.println("" + flowTicketHeight);
         ticketRow.setPrefHeight(flowTicketHeight+5);
         ticketRow2.setPrefHeight(flowSpecialTicketHeight);
     }
