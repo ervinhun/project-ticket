@@ -1,6 +1,7 @@
 package dk.easv.ticket;
 
 import dk.easv.ticket.be.TicketType;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +42,7 @@ public class NewEventController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setDummyTicketTypes();
+        Platform.runLater(this::setTicketTypesHeight);
     }
 
     @FXML private void btnAddTicketTypeClicked(ActionEvent event) {
@@ -95,7 +97,7 @@ public class NewEventController implements Initializable {
         ticketTypes.add(new TicketType(8, "Free taxi", true));
         ticketTypes.add(new TicketType(9, "Chuck Noris", false));
         ticketTypes.add(new TicketType(10, "Madonna", false));
-        ticketTypes.add(new TicketType(11, "Valaki, aki nagyon fontos személy", false));
+        ticketTypes.add(new TicketType(11, "Some very important person, who is famous", false));
         ticketTypes.add(new TicketType(12, "Steve Jobs", false));
 
 
@@ -105,19 +107,28 @@ public class NewEventController implements Initializable {
             //FlowPane.setMargin(cb, new Insets(0, 10, 5, 0));
             //GridPane.setVgrow(flowTicketTypes, Priority.ALWAYS);
             //GridPane.setVgrow(flowSpecialTickets, Priority.ALWAYS);
-            RowConstraints ticketRow = gridPaneForm.getRowConstraints().get(7);
-            RowConstraints ticketRow2 = gridPaneForm.getRowConstraints().get(8);
+
             //ticketRow.setVgrow(Priority.ALWAYS);
             //ticketRow2.setVgrow(Priority.ALWAYS);
             if (ticketType.getSpecial()) {
                 flowSpecialTickets.getChildren().add(cb);
-                ticketRow2.setVgrow(Priority.ALWAYS);
             }
             else {
                 flowTicketTypes.getChildren().add(cb);
-                ticketRow.setVgrow(Priority.ALWAYS);
             }
+
         }
+
+    }
+
+    private void setTicketTypesHeight() {
+        RowConstraints ticketRow = gridPaneForm.getRowConstraints().get(7);
+        RowConstraints ticketRow2 = gridPaneForm.getRowConstraints().get(8);
+        double flowTicketHeight = flowTicketTypes.getHeight();
+        double flowSpecialTicketHeight = flowSpecialTickets.getHeight();
+        System.out.println("" + flowTicketHeight);
+        ticketRow.setPrefHeight(flowTicketHeight+5);
+        ticketRow2.setPrefHeight(flowSpecialTicketHeight);
     }
 
 
