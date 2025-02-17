@@ -37,14 +37,18 @@ public class RootController {
 
     public void setUsername(String username) {
         this.username = username;
-        roles = ROLE_NONE;
         welcomeLabel.setText(welcomeLabel.getText() + " " + username);
         if (username.equals("admin")) {
-            addAdminButtons();
             roles = ROLE_ADMIN;
-        } else {
-            addOrganButtons();
+            addAdminButtons();
+        } else if (!username.isEmpty()){
             roles = ROLE_ORGANIZER;
+            addOrganButtons();
+        }
+        else {
+            roles = ROLE_NONE;
+            ArrayList<Button> buttons = new ArrayList<>();
+            setMenuBar(buttons);
         }
         /**ArrayList<Button> buttons = new ArrayList<>();
          buttons.addAll(addAdminButtons());
@@ -86,23 +90,19 @@ public class RootController {
         VBox.setMargin(ticketButton, new Insets(0, 0, 0, 10));
 
         ticketButton.setOnAction(e -> {
-            System.out.println("Tickets");
-
-        });
-
-        Button profileButton = new Button("Profile");
-        VBox.setMargin(profileButton, new Insets(0, 0, 0, 10));
-        profileButton.setOnAction(e -> {
             try {
-                loadUsersPage();
+                loadTicketsPage();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+
         });
+
+
         ArrayList<Button> buttons = new ArrayList<>();
         //buttons.add(eventsButton);
         buttons.add(ticketButton);
-        buttons.add(profileButton);
+        //buttons.add(profileButton);
         setMenuBar(buttons);
         //return buttons;
     }
@@ -112,10 +112,10 @@ public class RootController {
         menuLabel.setId("menuButton");
         menuLabel.getStyleClass().add("luckiest-guy-regular");
 
+
         Button logoutButton = new Button("Logout");
         VBox.setMargin(logoutButton, new Insets(0, 10, 15, 10));
         logoutButton.setOnAction(e -> {
-            System.out.println("Logout");
             FXMLLoader loader = loadPage("login");
             try {
                 Parent root = loader.load();
@@ -140,6 +140,27 @@ public class RootController {
                 throw new RuntimeException(ex);
             }
         });
+        if (roles == ROLE_NONE)
+            eventsButton.setDisable(true);
+        Button profileButton = new Button("Profile");
+        VBox.setMargin(profileButton, new Insets(0, 0, 0, 10));
+        if (roles == ROLE_ORGANIZER || roles == ROLE_NONE)
+        profileButton.setOnAction(e -> {
+            try {
+                loadUsersPage();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        else {
+            profileButton.setOnAction(e -> {
+                try {
+                    loadAdminProfilePage();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        }
 
         Region spacer = new Region();
         VBox buttonBox = new VBox(10);
@@ -151,11 +172,29 @@ public class RootController {
         for (Button button : buttons) {
             buttonBox.getChildren().add(button);
         }
+        buttonBox.getChildren().add(profileButton);
         buttonBox.getChildren().addAll(spacer, logoutButton);
         buttonBox.setAlignment(Pos.TOP_CENTER);
         VBox.setVgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
         //VBox.setMargin(event, new Insets(0, 10, 0, 0));
         root.setLeft(buttonBox);
+    }
+
+    private void loadAdminProfilePage() throws IOException {
+        FXMLLoader loader = loadPage("admin_profile");
+        VBox adminProfilePage = loader.load();
+        adminProfilePage.setAlignment(Pos.TOP_CENTER);
+        AdminProfileController usersController = loader.getController();
+
+
+        root.setCenter(adminProfilePage);
+    }
+
+    private void loadTicketsPage() throws IOException {
+        FXMLLoader loader = loadPage("tickets");
+        Parent ticketPane = loader.load();
+        TicketsController ticketsController = loader.getController();
+        root.setCenter(ticketPane);
     }
 
     private void setCenterMain() {
@@ -234,7 +273,35 @@ public class RootController {
         HBox.setMargin(editButton, new Insets(0, 10, 15, 0));
         editButton.setDisable(true);
         editButton.setOnAction(e -> {
+            FXMLLoader loaderNew = loadPage("new_event");
+            try {
+                Parent newEventRoot = loaderNew.load();
 
+                root.setCenter(newEventRoot);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            StackPane stackPane = loaderNew.getRoot();
+            NewEventController newEventController = loaderNew.getController();
+            newEventController.setEventToEdit((Event) eventController.getTableView().getSelectionModel().getSelectedItem());
+            Button cancelButton = newEventController.getCancelButton();
+            Button saveButton = newEventController.getSaveButton();
+            cancelButton.setOnAction(event -> {
+                try {
+                    root.setCenter(eventPage);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+            saveButton.setOnAction(event -> {
+                //Save things and stuff, then load back the event page
+                try {
+                    root.setCenter(eventPage);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
         });
 
 
@@ -278,6 +345,9 @@ public class RootController {
         UsersController usersController = loader.getController();
         if (roles != ROLE_ADMIN) {
             usersController.hideAdminButtons();
+        }
+        else {
+            usersController.hidePasswordFields();
         }
 
         root.setCenter(adminUsersPage);

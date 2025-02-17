@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 public class UsersController implements Initializable {
 
 
+    @FXML private VBox vbPassword;
     @FXML private Label lblUserTitle;
     @FXML private  HBox hbTop;
     @FXML private  VBox vboxUserList;
@@ -41,7 +42,6 @@ public class UsersController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Here I am");
     }
 
     @FXML private void btnSaveClicked(ActionEvent event) {
@@ -50,10 +50,25 @@ public class UsersController implements Initializable {
 
     @FXML private void btnDeleteClicked(ActionEvent event) {
         System.out.println("btnDeleteClicked");
+        listUsers.getSelectionModel().clearSelection();
+        clearFields();
     }
 
     @FXML private void btnNewUserClicked(ActionEvent event) {
         System.out.println("btnNewUserClicked");
+        listUsers.getSelectionModel().clearSelection();
+        clearFields();
+    }
+
+    private void clearFields() {
+        txtFirstName.clear();
+        txtSurname.clear();
+        txtEmail.clear();
+        txtUsername.clear();
+        txtPhoneNo.clear();
+        chkAdmin.setSelected(false);
+        chkOrganiser.setSelected(false);
+        chkPassword.setSelected(false);
     }
 
     public void hideAdminButtons() {
@@ -70,5 +85,10 @@ public class UsersController implements Initializable {
         hboxRoles.setManaged(false);
         hboxResetPassAdmin.setVisible(false);
         hboxResetPassAdmin.setManaged(false);
+    }
+
+    public void hidePasswordFields() {
+        vbPassword.setVisible(false);
+        vbPassword.setManaged(false);
     }
 }

@@ -19,9 +19,7 @@ public class LoginController {
     @FXML private Label welcomeText;
 
     public void loginClicked(ActionEvent event) {
-        System.out.println("Login clicked");
         try {
-            System.out.println("Login clicked");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("root.fxml"));
             Parent root = loader.load();
             RootController rootController = loader.getController();

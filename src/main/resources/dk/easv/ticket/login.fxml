@@ -19,7 +19,7 @@
             <PasswordField maxWidth="200.0" prefWidth="200.0" promptText="password" />
             <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label text="Forgot password" onMouseClicked="#forgotPass" />
+                  <Label text="Forgot password..." onMouseClicked="#forgotPass" styleClass="forgot_password" />
                   <Button mnemonicParsing="false" text="Login" onAction="#loginClicked" defaultButton="true" />
                </children>
                <padding>

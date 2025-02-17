@@ -67,10 +67,14 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <Label text="Change Password" />
-                  <TextField fx:id="txtOldPass" promptText="Old password" />
-                  <TextField fx:id="txtNewPass1" promptText="New Pasword" />
-                  <TextField fx:id="txtNewPass2" promptText="New password again" />
+                  <VBox fx:id="vbPassword" spacing="5">
+                     <children>
+                        <Label text="Change Password" />
+                        <TextField fx:id="txtOldPass" promptText="Old password" />
+                        <TextField fx:id="txtNewPass1" promptText="New Pasword" />
+                        <TextField fx:id="txtNewPass2" promptText="New password again" />
+                     </children>
+                  </VBox>
                </children>
                <HBox.margin>
                   <Insets top="10.0" />
