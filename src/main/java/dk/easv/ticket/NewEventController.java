@@ -49,9 +49,11 @@ public class NewEventController implements Initializable {
         if (eventToEdit != null) {
             txtTitle.setText(eventToEdit.getTitle());
             txtStartDate.setText(eventToEdit.getStartDate());
-            txtEndDate.setText(eventToEdit.getEndDate().toString());
+            if (eventToEdit.getEndDate() != null)
+                txtEndDate.setText(eventToEdit.getEndDate().toString());
             txtLocation.setText(eventToEdit.getLocation());
-            txtFileName.setText(eventToEdit.getImageSrc());
+            if (eventToEdit.imageSrcProperty() != null)
+                txtFileName.setText(eventToEdit.imageSrcProperty().getValue());
             txtaLocation.setText(eventToEdit.getLocationGuide());
             choiceEvents.getSelectionModel().select(eventToEdit.getTypeOfEvent());
             txtaDescription.setText(eventToEdit.getNotes());

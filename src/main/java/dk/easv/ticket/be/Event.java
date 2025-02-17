@@ -37,6 +37,11 @@ public class Event {
         this.startDate = new SimpleStringProperty(startDate);
         this.location = new SimpleStringProperty(location);
         this.typeOfEvent = new SimpleIntegerProperty(typeOfEvent);
+        //imageSrc1 = new SimpleStringProperty(img);
+        this.endDate = new Date();
+        this.locationGuide = location + " guideeeeeee";
+        this.ticketTypes = new ArrayList<>();
+
         Random r = new Random();
         int active = r.nextInt(4);
         switch (active) {
@@ -53,11 +58,11 @@ public class Event {
         //this.active = new SimpleStringProperty("true");
         if (img != null) {
             String path = IMG_PATH + img;
-            this.imageSrc = new SimpleStringProperty(path);
+            imageSrc = new SimpleStringProperty(path);
         }
         else {
             //this.imageSrc = new SimpleStringProperty("src/main/resources/dk/easv/listview_for_ticket_gui/img/no_img.jpg");
-            this.imageSrc = null;
+            imageSrc = null;
         }
     }
 

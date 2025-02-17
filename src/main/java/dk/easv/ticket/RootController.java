@@ -249,24 +249,7 @@ public class RootController {
             }
             StackPane stackPane = loaderNew.getRoot();
             NewEventController newEventController = loaderNew.getController();
-            Button cancelButton = newEventController.getCancelButton();
-            Button saveButton = newEventController.getSaveButton();
-            cancelButton.setOnAction(event -> {
-                try {
-                    root.setCenter(eventPage);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-
-            saveButton.setOnAction(event -> {
-                //Save things and stuff, then load back the event page
-                try {
-                    root.setCenter(eventPage);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
+            newEventButtons(eventPage, newEventController);
         });
 
         Button editButton = new Button("Edit");
@@ -281,27 +264,10 @@ public class RootController {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            StackPane stackPane = loaderNew.getRoot();
+            //StackPane stackPane = loaderNew.getRoot();
             NewEventController newEventController = loaderNew.getController();
             newEventController.setEventToEdit((Event) eventController.getTableView().getSelectionModel().getSelectedItem());
-            Button cancelButton = newEventController.getCancelButton();
-            Button saveButton = newEventController.getSaveButton();
-            cancelButton.setOnAction(event -> {
-                try {
-                    root.setCenter(eventPage);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-
-            saveButton.setOnAction(event -> {
-                //Save things and stuff, then load back the event page
-                try {
-                    root.setCenter(eventPage);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
+            newEventButtons(eventPage, newEventController);
         });
 
 
@@ -336,6 +302,27 @@ public class RootController {
 
 
         root.setCenter(eventPage);
+    }
+
+    private void newEventButtons(VBox eventPage, NewEventController newEventController) {
+        Button cancelButton = newEventController.getCancelButton();
+        Button saveButton = newEventController.getSaveButton();
+        cancelButton.setOnAction(event -> {
+            try {
+                root.setCenter(eventPage);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        saveButton.setOnAction(event -> {
+            //Save things and stuff, then load back the event page
+            try {
+                root.setCenter(eventPage);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     private void loadUsersPage() throws IOException {
