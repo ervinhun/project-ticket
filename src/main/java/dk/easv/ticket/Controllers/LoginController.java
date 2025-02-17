@@ -1,5 +1,6 @@
-package dk.easv.ticket;
+package dk.easv.ticket.Controllers;
 
+import dk.easv.ticket.TicketApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +21,7 @@ public class LoginController {
 
     public void loginClicked(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("root.fxml"));
+            FXMLLoader loader = new FXMLLoader(TicketApplication.class.getResource("root.fxml"));
             Parent root = loader.load();
             RootController rootController = loader.getController();
             String username = usernameInput.getText();

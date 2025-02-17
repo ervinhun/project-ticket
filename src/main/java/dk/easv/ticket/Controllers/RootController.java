@@ -1,6 +1,8 @@
-package dk.easv.ticket;
+package dk.easv.ticket.Controllers;
 
+import dk.easv.ticket.TicketApplication;
 import dk.easv.ticket.be.Event;
+import dk.easv.ticket.be.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -8,9 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -21,10 +21,8 @@ import java.util.ArrayList;
 
 public class RootController {
 
-    @FXML
-    private BorderPane root;
-    @FXML
-    private Label welcomeLabel;
+    @FXML private BorderPane root;
+    @FXML private Label welcomeLabel;
     private final static String IMG_PATH = "src/main/resources/dk/easv/ticket/img/";
     protected final static int ROLE_NONE = 0;
     protected final static int ROLE_ADMIN = 1;
@@ -215,14 +213,14 @@ public class RootController {
 
     private FXMLLoader loadPage (String pageName){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(RootController.class.getResource(pageName + ".fxml"));
+        loader.setLocation(TicketApplication.class.getResource(pageName + ".fxml"));
         return loader;
     }
 
     public void loadEventsPage() throws IOException {
         FXMLLoader loader = loadPage("event");
         VBox eventPage = loader.load();
-        eventPage.setAlignment(Pos.TOP_CENTER);
+        //eventPage.setAlignment(Pos.TOP_CENTER);
         EventController eventController = loader.getController();
         TableView tableView = eventController.getTableView();
 
@@ -234,6 +232,18 @@ public class RootController {
         HBox.setMargin(assignButton, new Insets(0, 250, 15, 0));
         assignButton.setDisable(true);
         assignButton.setOnAction(e -> {
+            Event event = (Event) tableView.getSelectionModel().getSelectedItem();
+            ArrayList<User> users = eventController.getDummyUserList();
+            ListView userList = eventController.getUsersListView();
+            VBox vbPopUp = eventController.getVbPopUp();
+            vbPopUp.setVisible(true);
+            for (User user : users) {
+                CheckBox checkBox = new CheckBox();
+                checkBox.setText(user.getFirstName() + " " + user.getLastName());
+                checkBox.setId("cb_" + user.getId());
+                userList.getItems().add(checkBox);
+            }
+
 
         });
         Button newEventButton = new Button("New event");

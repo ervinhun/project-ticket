@@ -6,4 +6,6 @@ module dk.easv.ticket {
 
     opens dk.easv.ticket to javafx.fxml;
     exports dk.easv.ticket;
+    exports dk.easv.ticket.Controllers;
+    opens dk.easv.ticket.Controllers to javafx.fxml;
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbPassword" prefHeight="200.0" prefWidth="300.0" spacing="5.0" stylesheets="@css/all.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.AdminProfileController">
+<VBox fx:id="vbPassword" prefHeight="200.0" prefWidth="300.0" spacing="5.0" stylesheets="@css/all.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.Controllers.AdminProfileController">
         <children>
             <Label text="Change Password">
                     <VBox.margin>

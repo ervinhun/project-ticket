@@ -1,7 +1,6 @@
-package dk.easv.ticket;
+package dk.easv.ticket.Controllers;
 
 import dk.easv.ticket.be.TicketType;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

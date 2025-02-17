@@ -1,4 +1,4 @@
-package dk.easv.ticket;
+package dk.easv.ticket.Controllers;
 
 import dk.easv.ticket.be.Event;
 import dk.easv.ticket.be.TicketType;

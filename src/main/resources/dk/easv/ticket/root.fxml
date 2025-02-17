@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600" minWidth="800" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/all.css, @css/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.RootController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600" minWidth="800" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/all.css, @css/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.Controllers.RootController">
     <top>
         <Label fx:id="welcomeLabel" styleClass="other_header" text="Welcome" BorderPane.alignment="TOP_CENTER" />
     </top>

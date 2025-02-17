@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" stylesheets="@css/all.css, @css/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.LoginController">
+<AnchorPane minHeight="600.0" minWidth="800.0" stylesheets="@css/all.css, @css/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.Controllers.LoginController">
    <children>
    
           <Label fx:id="welcomeText" layoutX="68.0" layoutY="46.0" styleClass="login_header" text="Welcome to the Event Organizing page" />

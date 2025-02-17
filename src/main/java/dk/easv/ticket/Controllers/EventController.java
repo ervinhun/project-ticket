@@ -1,23 +1,24 @@
-package dk.easv.ticket;
+package dk.easv.ticket.Controllers;
 
+import dk.easv.ticket.be.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
-import java.util.Objects;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dk.easv.ticket.be.Event;
+import javafx.scene.layout.VBox;
 
 public class EventController implements Initializable {
+
 
     @FXML private TableView tableView;
     @FXML private TableColumn<Event, String> imageColumn;
@@ -26,6 +27,8 @@ public class EventController implements Initializable {
     @FXML private TableColumn<Event, String> activeColumn;
     @FXML private TableColumn<Event, Integer> typeColumn;
     @FXML private TableColumn<Event, String> locationColumn;
+    @FXML private VBox vbPopUp;
+    @FXML private ListView lstUsers;
     private ObservableList<Event> event;
     private final static String DEFAULT_IMAGES_SRC = "src/main/resources/dk/easv/ticket/img/no_img.jpg";
 
@@ -92,6 +95,20 @@ public class EventController implements Initializable {
         return list;
     }
 
+    public ArrayList<User> getDummyUserList() {
+        ArrayList<User> list = new ArrayList<>();
+        list.add(new User(1, "John", "Black", "j.black", "j@a.com", "1111"));
+        list.add(new User(2,"May","Greep","mgreep1","mgreep1@thetimes.co.uk","$2a$04$u5wXnWzq/S4aqjt0zDybK.H4sqFzp5c7Pqv.mrmay6bk7notLfblO"));
+        list.add(new User(3,"Devlin","Jacombs","djacombs2","djacombs2@desdev.cn","$2a$04$hC3/zDe2uba6Upa.h2Shee7R8L0ytg/3nyIueK1P/zB3QfFGDZQOu"));
+        list.add(new User(4,"Cletis","Wimpey","cwimpey3","cwimpey3@patch.com","$2a$04$XJWWoiqH/ypC4iI32AYmX.i6R7m2TnG6kl66FTU19bMvsRNqppzWa"));
+        list.add(new User(5,"Angelita","Kollatsch","akollatsch4","akollatsch4@omniture.com","$2a$04"));
+        return list;
+    }
+
+    public ListView getUsersListView() { return lstUsers; }
+
+    public VBox getVbPopUp() { return vbPopUp; }
+
     public TableView getTableView() {
         return tableView;
     }
@@ -114,5 +131,24 @@ public class EventController implements Initializable {
             }
         }
         return false;
+    }
+
+    public void assignCancelClicked(ActionEvent event) {
+        vbPopUp.setVisible(false);
+    }
+
+    @FXML private void assignAssignClicked(ActionEvent event) {
+        //Saving
+        ArrayList<User> users = getDummyUserList();
+        ArrayList<CheckBox> cbs = new ArrayList<CheckBox>();
+        cbs.addAll(lstUsers.getItems());
+        for (User user : users) {String fullName = user.getFirstName() + " " + user.getLastName();
+            for (CheckBox cb : cbs) {
+                if (cb.getText().equals(fullName) && cb.isSelected()) {
+                    System.out.println(fullName);
+                }
+            }
+        }
+        vbPopUp.setVisible(false);
     }
 }

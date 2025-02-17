@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="BOTTOM_CENTER" prefHeight="500" prefWidth="600.0" stylesheets="@css/all.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.UsersController">
+<VBox alignment="BOTTOM_CENTER" prefHeight="500" prefWidth="600.0" stylesheets="@css/all.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticket.Controllers.UsersController">
    <children>
       <Label fx:id="lblUserTitle" alignment="TOP_CENTER" styleClass="header_text" text="User management" />
       <HBox fx:id="hbTop" spacing="5.0">
