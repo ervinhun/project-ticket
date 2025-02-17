@@ -142,7 +142,8 @@ public class EventController implements Initializable {
         ArrayList<User> users = getDummyUserList();
         ArrayList<CheckBox> cbs = new ArrayList<CheckBox>();
         cbs.addAll(lstUsers.getItems());
-        for (User user : users) {String fullName = user.getFirstName() + " " + user.getLastName();
+        for (User user : users) {
+            String fullName = user.getFirstName() + " " + user.getLastName();
             for (CheckBox cb : cbs) {
                 if (cb.getText().equals(fullName) && cb.isSelected()) {
                     System.out.println(fullName);
