@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="500.0" prefWidth="600.0" stylesheets="@./css/all.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticketsys.PL.NewEventController">
+<StackPane prefHeight="500.0" prefWidth="600.0" stylesheets="@../CSS/homeStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.ticketsys.PL.NewEventController">
     <children>
         <VBox alignment="TOP_CENTER" spacing="5.0">
             <children>
