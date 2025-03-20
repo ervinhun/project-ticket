@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class NewEventController implements Initializable {
+
     @FXML private DatePicker dateEnd;
     @FXML private Spinner spEndHour;
     @FXML private Spinner spEndMinute;
