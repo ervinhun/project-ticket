@@ -40,6 +40,8 @@
                         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
                         <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+
+
                     <children>
                         <Label text="*Event title:" />
                         <TextField fx:id="txtTitle" promptText="Title" GridPane.columnIndex="1" />
