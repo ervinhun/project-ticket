@@ -173,7 +173,7 @@ public class NewEventController implements Initializable {
     }
 
     @FXML private void btnImageClicked(ActionEvent event) {
-        System.out.println("Browse");
+        System.out.println("Browsing");
     }
 
     @FXML private void btnDeleteTicketType(ActionEvent event) {
