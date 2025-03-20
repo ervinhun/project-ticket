@@ -14,6 +14,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class NewEventController implements Initializable {
+
+    @FXML private DatePicker dateEnd;
+    @FXML private Spinner spEndHour;
+    @FXML private Spinner spEndMinute;
+    @FXML private DatePicker dateStart;
+    @FXML private Spinner spStartHour;
+    @FXML private Spinner spStartMinute;
     @FXML private Label lblConnectToEvent;
     @FXML private Label lblNewTicketTitle;
     @FXML private HBox hbNewEventTitle;
@@ -66,6 +73,59 @@ public class NewEventController implements Initializable {
 
         setDummyTicketTypes();
         Platform.runLater(this::setTicketTypesHeight);
+        setSpinners();
+    }
+
+    private void setSpinners() {
+// Configure Hour Spinner (0-23)
+        SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(-1, 24, 12);
+        spStartHour.setValueFactory(hourFactory);
+        spStartHour.getValueFactory().setValue(12);
+
+        // Configure Minute Spinner (0-59)
+        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(-1, 60, 0);
+        spStartMinute.setValueFactory(minuteFactory);
+
+        // Make spinners editable
+        spStartHour.setEditable(true);
+        spStartMinute.setEditable(true);
+
+        // Configure Hour Spinner (0-23)
+        SpinnerValueFactory<Integer> hourFactoryEnd = new SpinnerValueFactory.IntegerSpinnerValueFactory(-1, 24, 12);
+        spEndHour.setValueFactory(hourFactoryEnd);
+        spEndHour.getValueFactory().setValue(12);
+
+        // Configure Minute Spinner (0-59)
+        SpinnerValueFactory<Integer> minuteFactoryEnd = new SpinnerValueFactory.IntegerSpinnerValueFactory(-1, 60, 0);
+        spEndMinute.setValueFactory(minuteFactoryEnd);
+
+        // Make spinners editable
+        spEndHour.setEditable(true);
+        spEndMinute.setEditable(true);
+
+        //Listener to get around
+        // Add wrap-around behavior for hour spinner
+        spStartHour.getEditor().textProperty().addListener((obs, oldValue, newValue) -> wrapSpinner(spStartHour, 0, 23));
+        spEndHour.getEditor().textProperty().addListener((obs, oldValue, newValue) -> wrapSpinner(spEndHour, 0, 23));
+
+        // Add wrap-around behavior for minute spinner
+        spStartMinute.getEditor().textProperty().addListener((obs, oldValue, newValue) -> wrapSpinner(spStartMinute, 0, 59));
+        spEndMinute.getEditor().textProperty().addListener((obs, oldValue, newValue) -> wrapSpinner(spEndMinute, 0, 59));
+    }
+
+    private void wrapSpinner(Spinner<Integer> spinner, int min, int max) {
+        try {
+            int value = Integer.parseInt(spinner.getEditor().getText());
+
+            if (value < min) {
+                spinner.getValueFactory().setValue(max); // Jump to max if below min
+            } else if (value > max) {
+                spinner.getValueFactory().setValue(min); // Jump to min if above max
+            }
+        } catch (NumberFormatException e) {
+            // Reset to min if input is invalid
+            spinner.getValueFactory().setValue(min);
+        }
     }
 
     @FXML private void btnAddTicketTypeClicked(ActionEvent event) {
@@ -114,7 +174,7 @@ public class NewEventController implements Initializable {
     }
 
     @FXML private void btnImageClicked(ActionEvent event) {
-        System.out.println("Browse");
+        System.out.println("Browsing");
     }
 
     @FXML private void btnDeleteTicketType(ActionEvent event) {
@@ -176,6 +236,11 @@ public class NewEventController implements Initializable {
         ticketTypes.add(new TicketType(2, "VIP", false));
         ticketTypes.add(new TicketType(3, "Guest", false));
         ticketTypes.add(new TicketType(4, "Fast track", false));
+        ticketTypes.add(new TicketType(5, "Participant", false));
+        ticketTypes.add(new TicketType(6, "Free beer", true));
+        ticketTypes.add(new TicketType(7, "Free pizza", true));
+        ticketTypes.add(new TicketType(8, "Free taxi", true));
+        ticketTypes.add(new TicketType(9, "Chuck Noris", false));
         ticketTypes.add(new TicketType(5, "Participant", false));
         ticketTypes.add(new TicketType(6, "Free beer", true));
         ticketTypes.add(new TicketType(7, "Free pizza", true));
